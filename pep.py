@@ -31,7 +31,7 @@ class Pep:
         try:
             with request.urlopen(url) as r:
                 txt = r.read().decode()
-                title = re.findall(r"Title: (.+?)\n", txt, re.S)[0]
+                title = re.findall(r"Title: (.+?)\n", txt)[0]
                 self.fname = ".peps/PEP-%04d %s.txt" % (self.num, title)
         except HTTPError as e:
             print(e)
