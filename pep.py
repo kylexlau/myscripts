@@ -24,8 +24,8 @@ class Pep:
             self.editor = editor
 
     def get(self):
-        url = "https://raw.githubusercontent.com/python/peps/master/pep-\
-        %04d.txt" % self.num
+        url = "https://raw.githubusercontent.com/python/peps/master/pep-%04d.txt" \
+              % self.num
 
         print("Downloading %s..." % url)
 
