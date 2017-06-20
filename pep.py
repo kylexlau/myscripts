@@ -24,7 +24,7 @@ class Pep:
             self.editor = editor
 
     def get(self):
-        url = "https://raw.githubusercontent.com/python/peps/master/pep-%04d.txt" \
+        url = "https://github.com/python/peps/raw/master/pep-%04d.txt"\
               % self.num
 
         print("Downloading %s..." % url)
@@ -48,7 +48,7 @@ class Pep:
     def read(self, p):
         sys.exit(os.system("%s '%s'" % (self.editor, p)))
 
-    def run(self):
+    def read_or_get(self):
         fn = "PEP-%04d*" % self.num
         try:
             p = next(Path('.peps').glob(fn))
@@ -57,11 +57,14 @@ class Pep:
             self.get()
             self.read(self.fname)
 
-if __name__ == "__main__":
+def main():
     parser = argparse.ArgumentParser(description="Get or read a PEP.")
     parser.add_argument('pep_no', help="PEP number")
     parser.add_argument('-e', '--editor',
                         help="Choose a editor, default is less.")
     args = parser.parse_args()
     pep = Pep(args.pep_no, args.editor)
-    pep.run()
+    pep.read_or_get()
+
+if __name__ == "__main__":
+    main()
